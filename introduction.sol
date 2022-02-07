@@ -70,7 +70,7 @@ contract ATM {
     // lowlevels calls to send ether...you'll get results back either boolean
     // won't revert. Callback data you get from smart contract 
     //call .get using lowlevel call
-    function transfer(address to, uint amount) public payable {
+    function transfer(address to, uint256 amount) public payable returns {
         require(msg.value == amount, "check the amount you are sending");
         payable(to).transfer(amount);
         return true; 

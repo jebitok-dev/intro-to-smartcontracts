@@ -14,7 +14,12 @@ contract first {
 
     Profile[] profiles;
 
-    function createProdile(string memory _name) public {
+    modifier onlyOneAccount(address creator) {
+        require(addressToProfile[creator].id == 0, "you can only create one account");
+        _;
+    }
+
+    function createProfile(address creator, string memory _name) public onlyOneAccount(creator) {
         Profile memory userProfile = Profile(currentID, _name);
         profiles.push(userProfile);
         addressToProfile[msg.sender].id == 0;
@@ -22,6 +27,6 @@ contract first {
     }
 
     function getProfile(address userAddress) external view returns(Profile memory) {
-        return addressToProfile(userAddress);
+        return addressToProfile[userAddress];
     }
 }

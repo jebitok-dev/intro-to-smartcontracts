@@ -29,8 +29,13 @@ contract buyW3B {
         require(msg.value >= minimumBuy, "you can't buy below minimum buy");
         require(msg.value <= maximumBuy, "You can't buy above maximum buy");
 
+        uint256 tokenBalance = checkTokenBalance();
+
+        require(msg.value * rate <= tokenBalance, "No enough token to sale try a lower value");
+
         web3BridgeToken.transfer(msg.sender, msg.value * rate);
-        emit Buy(msg.sender, msg.value * rate);
+        address to = msg.sender;
+        emit Buy(to, msg.value * rate);
     }
 
     function checkBalance() external view returns(uint256) {

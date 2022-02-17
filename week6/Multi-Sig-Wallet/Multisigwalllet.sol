@@ -58,4 +58,20 @@ contract MultiSig {
     }
 
     // send transaction: change status to true after it has been executed to prevent repeat of execution
+    function sendTransaction(uint _txID) external onlyOwners returns(bool) {
+        TransactionData memory transactionToBeSent = transactionArray[_txID];
+        require(transactionToBeSent.numberOfApproval >= minimumApprovalRequired, "minimum approval not reached yet);
+        require(transactionToBeSent.status == false, "This transaction has been fulfilled");
+        transactionArray[_txID].status = true;
+        uint amountToSend = transactionToBeSent.amount;
+        address addressTo = transactionToBeSent.toAddress;
+        // bool success = payable(addressTo).send(amountToSend);
+        payable(addressTo).transfer(amountToSend);
+        return true;
+    }
+
+    receive() external payable {}
+
 }
+
+// Assignment: write another example of proof of existence contract(to be submitted)

@@ -36,8 +36,8 @@ contract NFT {
         // https://www.tutorialspoint.com/solidity/solidity_conversions.htm
     }
 
-    function convertToTrat(uint32 _card) public view returns(uint8[4] memory out_) {
-       bytes memory hex1 = api.encodePacked(_card);
+    function convertToTrait(uint32 _card) public view returns(uint8[4] memory out_) {
+       bytes memory hex1 = abi.encodePacked(_card);
         out_ = parsePostalCode(hex1);
     }
 
@@ -48,7 +48,7 @@ contract NFT {
         c[2] = convertToTrait(_cards[1])[0];
         c[3] = convertToTrait(_cards[1])[0];
         for(uint i = 1; i < _cards.length; i++) {
-            uint8[] memory next = _cards[i];
+            uint8[] memory next = convertToTrait(_cards[i]);
         }
     }
 }

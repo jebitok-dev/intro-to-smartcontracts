@@ -35,3 +35,5 @@ Cons:
     - [LibDiamod - TypeScript Code- Github](https://github.com/Timidan/diamond-3-hardhat-typechain/blob/main/contracts/libraries/LibDiamond.sol)
     - [Diamond Standard Article](https://soliditydeveloper.com/eip-2535)
     - [Diamond Standard Images for better understanding](https://www.google.com/search?q=diamond+standard+pattern+in+solidity&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiiv9GS7Kf2AhWchP0HHSolBa0Q_AUoAnoECAEQBA&biw=767&bih=708&dpr=1.25)
+    - [Diamond Implementation Github Issue](https://github.com/ethereum/EIPs/issues/2535)
+    - [28 projects using Diamond Standard](https://eip2535diamonds.substack.com/p/list-of-projects-using-eip-2535-diamonds?s=r)

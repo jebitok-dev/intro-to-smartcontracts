@@ -37,3 +37,5 @@ Cons:
     - [Diamond Standard Images for better understanding](https://www.google.com/search?q=diamond+standard+pattern+in+solidity&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiiv9GS7Kf2AhWchP0HHSolBa0Q_AUoAnoECAEQBA&biw=767&bih=708&dpr=1.25)
     - [Diamond Implementation Github Issue](https://github.com/ethereum/EIPs/issues/2535)
     - [28 projects using Diamond Standard](https://eip2535diamonds.substack.com/p/list-of-projects-using-eip-2535-diamonds?s=r)
+    - [Hardhat: HardFork & impersonation account](https://hardhat.org/hardhat-network/guides/mainnet-forking.html)
+    - [HardFork & Account Impersonifaction - ETHExchange](https://ethereum.stackexchange.com/questions/110931/hardhat-mainnet-forking-and-impersonating-an-account-isnt-working-help)

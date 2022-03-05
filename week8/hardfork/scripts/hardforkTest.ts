@@ -1,6 +1,6 @@
 //@ts-ignore
 import {ethers} from "hardhat";
-import {Signer} from "ethers";
+import {BigNumber, BigNumberish, BytesLike, providers, Signer} from "ethers";
 
 async function checkEther() {
   const address = "0x6635f83421bf059cd8111f180f0727128685bae4";
@@ -8,8 +8,8 @@ async function checkEther() {
     "IERC20",
     "0x2ce271ac90acd69529f6a5340f090c336a993741"
   );
-  const bal = await Ether.balanceOf(address);
-  console.log(bal);
+  const bal = await ethers.balanceOf(address);
+  console.log("balance before", bal);
 //@ts-ignore
   await hre.network.provider.request({
     method: "hardhat_impersonateAccount",
@@ -18,7 +18,27 @@ async function checkEther() {
 
   const signer:Signer = await ethers.getSigner(address);
   //@ts-ignore
-  await DAI.connect(signer).transfer(address, "1000000000000"); //has a lower balance than one being sent
+  // await DAI.connect(signer).transfer(address, "1000000000000"); //has a lower balance than one being sent
+  const together: BytesLike = new ethers.utils.AbiCoder().encode(
+    ['address', 'uint256'],
+    [address, 2],
+  )
+
+  const position:BytesLike = ethers.utils.solidityKeccak256(
+    //@ts-ignore
+    [bytes],
+    [together],
+  )
+  const dec:BigNumberish = BigNumber.from(position);
+      //@ts-ignore
+  const balance = await providers.getStorageAt(Ether.address, dec)
+  console.log(balance)
+  await ethers.provider.send("hardhat_setStorageAt", [
+    Ether.address,
+    position,
+    '0x00000000000000000000000000000000000000000000000000000000000f4240',
+    "f4240",
+  ])
 }
 
 checkEther().catch((err) => {
@@ -26,5 +46,5 @@ checkEther().catch((err) => {
   process.exitCode = 1;
 });
 //@ts-ignore
-const bal = await Ether.balanceOf(address);
-console.log(bal);
+
+// run $ npx hardhat run scripts/hardforkTest.ts --network localhost

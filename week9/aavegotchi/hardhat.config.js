@@ -1,5 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
 require('dotenv').config();
+require("./scripts/deploy.js");
+require("./scripts/mint.js");
 
 const {ALCHEMY_KEY, ACCOUNT_PRIVATE_KEY} = process.env;
 
